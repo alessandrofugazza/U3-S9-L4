@@ -16,12 +16,11 @@ class AddComment extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     const asin = this.props.asin;
-    const commentsUrl = "https://striveschool-api.herokuapp.com/api/comments/";
-    const fetchUrl = commentsUrl + asin;
+    const fetchUrl = "https://striveschool-api.herokuapp.com/api/comments/";
     try {
       const re = await fetch(fetchUrl, {
         method: "POST",
-        body: JSON.stringify(this.state.review),
+        body: JSON.stringify({ ...this.state.review, elementId: asin }),
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGU4NTkyZGMwMzRmZjAwMTQwM2Y0ZmUiLCJpYXQiOjE2OTQwODcyMzMsImV4cCI6MTY5NTI5NjgzM30.h3t3Ck-2duA_c0NU-bVjwedissVciuKWnFsJSrFYRM8",
